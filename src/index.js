@@ -1,3 +1,7 @@
+import '../node_modules/react-app-polyfill/ie11'
+import '../node_modules/react-app-polyfill/stable'
+import 'core-js'
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

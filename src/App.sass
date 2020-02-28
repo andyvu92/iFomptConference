@@ -1,0 +1,820 @@
+#program-presentation
+    *
+        margin: 0
+        padding: 0
+        box-sizing: border-box
+        text-align: unset
+        font-size: unset
+        font-weight: unset
+        color: unset
+
+// colors
+$blue: #21428C
+$pink: #FD2ABD
+$border-grey: #DEDDE3
+$icon-grey: #9A96AA
+$background-grey: #ECEFF5
+$background-lightblue: #D5E0F8
+$background-fadedblue: #ECEFF5
+$border-lightblue: #c5cfe3
+
+@mixin square($size)
+    width: $size
+    height: $size
+
+#program-presentation
+    margin: 100px auto
+    max-width: 1110px
+    font-size: 16px
+    // day select
+    .day-filter-section
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        @media all and (max-width: 767px)
+            flex-direction: column
+        .first-col, .last-col
+            width: 50%
+            @media all and (max-width: 767px)
+                width: 100%
+        .first-col
+            @media all and (max-width: 767px)
+                order: 2
+                margin-top: 25px
+        .sub-heading, .download-pdf
+            color: $blue
+            font-size: 21px
+            font-weight: 700
+            margin-bottom: 15px
+            font-size: 1.2em
+        .download-pdf
+            color: $pink
+            display: block
+            margin-left: auto
+            width: max-content
+            text-decoration: underline
+            @media all and (max-width: 767px)
+                margin-left: 0
+        .day-select-wrapper
+            display: flex
+            flex-direction: row
+            position: relative
+            @media all and (max-width: 767px)
+                max-width: 400px
+            .btn-group
+                z-index: 2
+            button
+                display: none!important
+            select
+                display: block!important
+                border: 0
+                -webkit-appearance: none
+                height: 47px
+                line-height: 1.3em
+                width: 100%
+                color: $blue
+                font-size: 18px
+                padding: 10px 0px 10px 15px
+                border: 1px solid $border-grey
+                z-index: 2
+                background: none
+                cursor: pointer
+                option
+                    color: $blue
+                &::-ms-expand
+                    display: none
+                &:focus, &:active
+                    outline: none
+                    & + .icon
+                        background: #fff
+                        svg
+                            path
+                                fill: $pink
+            .icon
+                z-index: 1
+                @include square(47px)
+                display: flex
+                justify-content: center
+                align-items: center
+                background: $background-grey
+                position: absolute
+                top: 0
+                right: 0
+                border: 1px solid $border-grey
+                border-left: 0
+                transition: background .3s ease
+                @media all and (max-width: 767px)
+                    background: $blue
+                    border: 1px solid $blue
+                svg
+                    width: 20px
+                    height: 20px
+                    transform: rotate(90deg)
+                    path
+                        fill: $icon-grey
+                        transition: fill .3s ease
+                        @media all and (max-width: 767px)
+                            fill: #fff
+    // category select
+    .category-filter-section
+        display: block
+        width: 100%
+        background: $pink
+        padding: 25px 0 35px
+        margin-top: 50px
+        @media all and (max-width: 767px)
+            margin-bottom: 20px
+            padding: 0
+        .category-inner-wrapper
+            display: flex
+            flex-direction: row
+            flex-wrap: wrap
+            justify-content: center
+            align-items: center
+            max-width: 80%
+            margin: 0 auto
+            @media all and (max-width: 767px)
+                max-width: 100%
+                justify-content: flex-start
+            .single-cat
+                position: relative
+                width: 25%
+                display: flex
+                flex-direction: column
+                justify-content: center
+                align-items: center
+                cursor: pointer
+                padding: 15px
+                border: 1px solid $pink
+                border-left-width: .5px
+                border-right-width: .5px
+                transition: all .3s ease
+                @media all and (max-width: 767px)
+                    width: 50%
+                    padding: 25px 15px
+                    &:nth-child(odd)
+                        border-right: 1px dashed rgba(255,255,255,.2)
+                    &:nth-child(1), &:nth-child(2)
+                        border-bottom: 1px dashed rgba(255,255,255,.3)
+                &:hover
+                    .icon
+                        transform: scale(1.1)
+                &.active
+                    border-color: rgba(255,255,255,0.5)
+                    background: #ffffff
+                    color: $pink
+                    .label
+                        color: $pink
+                    .icon
+                        svg
+                            path
+                                fill: $pink
+                    .close-toggle
+                        position: absolute
+                        top: 10px
+                        right: 10px
+                        width: 20px
+                        height: 20px
+                        transform: scale(1)
+                        transition: all .3s ease
+                        &:hover
+                            transform: scale(1.2)
+                        svg
+                            path
+                                fill: $pink
+                .icon
+                    display: block
+                    transform: scale(1)
+                    transition: transform .3s ease
+                    svg
+                        width: 80px
+                        height: 80px
+                        @media all and (max-width: 767px)
+                            height: 50px
+                            width: 50px
+                .label
+                    font-size: 1.2em
+                    font-weight: 500
+                    color: #ffffff
+                    line-height: 1.2em
+                    text-transform: uppercase
+                    padding: 15px 0 0
+                    @media all and (max-width: 767px)
+                        font-size: 1em
+    // day lists with presentation section
+    .presentations-section
+        .day-list-wrapper
+            .single-day
+                margin-bottom: 60px
+                animation: fadeIn .5s ease forwards
+                @media all and (max-width: 767px)
+                    margin-bottom: 35px
+                &:last-of-type
+                    margin-bottom: 0
+                p.day-heading
+                    font-size: 1.4em
+                    line-height: 1.4em
+                    color: #fff
+                    text-align: center
+                    color: #ffffff
+                    background: $blue
+                    padding: 5px 10px 8px
+                    font-weight: 300
+                    @media all and (max-width: 767px)
+                        font-size: 1.2em
+                    .label
+                        font-weight: 500
+                        color: #fff
+                .presentations-wrapper
+                    .session-break
+                        background: $background-fadedblue
+                        height: 50px
+                        display: block
+                        border-bottom: 1px dashed $border-lightblue
+                        border-top: 1px dashed $border-lightblue
+                        &:first-of-type
+                            display: none
+                    div[data-name="plenary"], div[data-name="concurrent"]
+                        + .session-break
+                            display: block
+                    .presentation-session
+                        .session-label
+                            padding: 25px 25px 0
+                            text-transform: uppercase
+                            text-decoration: underline
+                            font-weight: 500
+                            color: $blue
+                            background: $background-fadedblue
+                            animation: fadeInUp .5s ease-in forwards
+                            @media all and (max-width: 767px)
+                                padding: 25px 15px 0
+                        .presentations
+                            display: flex
+                            flex-direction: row
+                            flex-wrap: wrap
+                            @media all and (max-width: 767px)
+                                flex-direction: column
+                            .single-presentation
+                                flex: 1
+                                @media all and (max-width: 767px)
+                                    border-bottom: 1px dashed $border-lightblue
+                                    &:last-of-type
+                                        border-width: 0
+                                &.concurrent, &.workshop
+                                    @media all and (min-width: 768px)
+                                        border-right: 1px dashed $border-lightblue
+                                        &:last-of-type
+                                            border-width: 0
+                                &.plenary
+                                    border-bottom: 1px dashed $border-lightblue
+                                    .session-label
+                                        padding: 0 0 25px
+                                        display: none
+                                    &:first-of-type
+                                        .session-label
+                                            display: block
+                            &.single-column
+                                .single-presentation
+                                    border-bottom: 1px dashed $border-lightblue
+                                    width: 100%
+                                    flex: none
+                                    &:last-of-type
+                                        border-width: 0
+                        .single-presentation
+                            color: $blue
+                            animation: fadeIn .5s ease forwards
+                            &.q-and-a
+                                padding: 25px 25px 35px
+                                background: $background-fadedblue
+                                border-top: 1px dashed $border-lightblue
+                                font-weight: 700
+                            &.simple
+                                padding: 16px 25px
+                                background: $background-lightblue
+                                animation: fadeIn .5s ease-in forwards
+                                @media all and (max-width: 767px)
+                                    padding: 12px 15px
+                                p
+                                    font-size: 1em
+                                    text-transform: uppercase
+                                    .time
+                                        font-weight: 500
+                                        @media all and (max-width: 767px)
+                                            display: block
+                                            text-transform: lowercase
+                                    .break
+                                        margin: 0 10px
+                                        @media all and (max-width: 767px)
+                                            display: none
+                            &.workshop
+                                padding: 25px
+                                background: $background-fadedblue
+                                @media all and (max-width: 767px)
+                                    padding: 0
+                                .theme
+                                    display: flex
+                                    flex-direction: column
+                                    margin-bottom: 25px
+                                    animation: fadeInUp .5s ease-in forwards
+                                    .label
+                                        font-weight: 700
+                                    .name
+                                        text-transform: uppercase
+                                        line-height: 1.2em
+                                        margin-top: 5px
+                                        span
+                                            text-transform: lowercase
+                                .time
+                                    animation: fadeInUp .5s ease-in forwards
+                                .short-intro
+                                    margin-bottom: 25px
+                                    padding-right: 20px
+                                    display: -webkit-box
+                                    -webkit-line-clamp: 2
+                                    -webkit-box-orient: vertical  
+                                    overflow: hidden
+                                    animation: fadeInUp .5s ease-in forwards
+                                .main-speaker
+                                    display: flex
+                                    flex-direction: column
+                                    margin-bottom: 25px
+                                    animation: fadeInUp .5s ease-in forwards
+                                    .label
+                                        color: $pink
+                                    .name
+                                        font-weight: 900
+                                        text-transform: uppercase
+                                        text-decoration: none
+                                        color: $pink
+                                .additional-speakers
+                                    margin-bottom: 25px
+                                    animation: fadeInUp .5s ease-in forwards
+                                    .label
+                                        font-weight: 700
+                                    .presenter-list
+                                        padding: 0
+                                        margin: 0
+                                        list-style: none
+                                        li
+                                            .name
+                                                text-decoration: none
+                                                color: $blue
+                                                &:active, &:focus, &:hover
+                                                    color: $pink
+                                .read-more-wrapper
+                                    animation: fadeInUp .5s ease-in forwards
+                                    button.read-more
+                                        background: none
+                                        border: none
+                                        display: flex
+                                        flex-direction: row
+                                        align-items: center
+                                        text-transform: uppercase
+                                        color: $blue
+                                        text-decoration: underline
+                                        cursor: pointer
+                                        &:hover
+                                            color: $pink
+                                            .readmore-icon
+                                                border-color: $pink
+                                                &:before, &:after
+                                                    background: $pink
+                                        &:focus, &:active
+                                            outline: none
+                                        .readmore-icon
+                                            width: 25px
+                                            height: 25px
+                                            border: .5px solid $blue
+                                            border-radius: 100%
+                                            display: flex
+                                            justify-content: center
+                                            align-items: center
+                                            margin-right: 8px
+                                            &:before, &:after
+                                                content: ''
+                                                position: absolute
+                                                display: block
+                                                background: $blue
+                                                width: 16px
+                                                height: 1px
+                                            &:before
+                                                transform: rotate(90deg)
+                                                height: .5px
+                                .accordion-wrapper
+                                    box-shadow: none
+                                    background: none
+                                    padding: 9px 15px
+                                    .accordion-header
+                                        color: $blue
+                                        .theme
+                                            margin: 0 0 0 15px
+                                        .time
+                                            font-weight: 700
+                                        .icon
+                                            width: 25px
+                                            height: 25px
+                                            color: $pink
+                                    .accordion-body
+                                        display: flex
+                                        flex-direction: column
+                                        padding-bottom: 20px
+                            &.plenary
+                                padding: 25px
+                                background: $background-fadedblue
+                                @media all and (max-width: 767px)
+                                    padding: 20px 15px
+                                .time, .heading, .main-speaker
+                                    animation: fadeInUp .5s ease-in forwards
+                                    line-height: 1.3em
+                                .time
+                                    @media all and (max-width: 767px)
+                                        font-weight: 500
+                                .heading
+                                    margin-bottom: 25px
+                                    @media all and (max-width: 767px)
+                                        margin-bottom: 15px
+                                    .highlight
+                                        font-weight: 700
+                                    + .heading
+                                        margin-bottom: 5px
+                                .abstract-url
+                                    position: relative
+                                    display: flex
+                                    flex-direction: row
+                                    justify-content: center
+                                    align-items: center
+                                    max-width: max-content
+                                    margin-top: 25px
+                                    font-size: 1em
+                                    line-height: 1em
+                                    text-decoration: none
+                                    border: .5px solid $pink
+                                    padding: 10px 16px
+                                    color: $pink
+                                    font-weight: 500
+                                    transition: all .5s ease
+                                    &:hover
+                                        background: $pink
+                                        color: #fff
+                                        .button-icon
+                                            svg
+                                                path, polygon
+                                                    fill: #fff
+                                    .button-icon
+                                        margin-right: 8px
+                                        svg
+                                            width: 25px
+                                            height: 25px
+                                            path, polygon
+                                                fill: $pink
+                                                transition: all .5s ease
+                                .main-speaker
+                                    .name
+                                        color: $pink
+                                        text-decoration: none
+                                        text-transform: uppercase
+                                        font-weight: 900
+                                        display: block
+                                        max-width: max-content
+                                    .label
+                                        color: $pink
+                                        @media all and (max-width: 767px)
+                                            color: $blue
+                                    + .additional-speakers
+                                        margin-top: 25px
+                                .additional-speakers
+                                    margin-bottom: 25px
+                                    animation: fadeInUp .5s ease-in forwards
+                                    .label
+                                        font-weight: 700
+                                    .presenter-list
+                                        padding: 0
+                                        margin: 0
+                                        list-style: none
+                                        li
+                                            .name
+                                                text-decoration: none
+                                                color: $blue
+                                                &:active, &:focus, &:hover
+                                                    color: $pink
+                            &.concurrent
+                                padding: 25px 0 0
+                                background: $background-fadedblue
+                                @media all and (max-width: 767px)
+                                    padding: 20px 15px
+                                > .label
+                                    text-transform: uppercase
+                                    text-decoration: underline
+                                    font-weight: 500
+                                    margin-bottom: 15px
+                                    padding: 0 25px
+                                .theme
+                                    font-weight: 700
+                                    margin-bottom: 25px
+                                    padding: 0 25px
+                                    min-height: 21.33px
+                                .period-wrapper
+                                    background: none
+                                    box-shadow: none
+                                    .single-period
+                                        padding: 25px
+                                        border-bottom: 1px dashed $border-lightblue
+                                        &:last-of-type
+                                            border-width: 0
+                                        .short-intro-wrapper
+                                            position: relative
+                                            .expand-toggle
+                                                position: absolute
+                                                bottom: .2em
+                                                right: 0
+                                                width: 25px
+                                                height: 25px
+                                                cursor: pointer
+                                                transition: all .3s ease
+                                                &:hover
+                                                    color: $pink
+                                            .short-intro
+                                                margin-bottom: 25px
+                                                position: relative
+                                                max-height: 3em
+                                                line-height: 1.5em
+                                                overflow: hidden
+                                                transition: all .3s linear
+                                                &:after
+                                                    content: ""
+                                                    text-align: right
+                                                    position: absolute
+                                                    bottom: 0
+                                                    right: 0
+                                                    width: 70%
+                                                    height: 1.5em
+                                                    transition: all .3s linear
+                                                    background: linear-gradient(to right, rgba(255, 255, 255, 0), $background-fadedblue 50%)
+                                            &.expanded
+                                                .short-intro
+                                                    max-height: 10em
+                                                    &:after
+                                                        width: 0
+                                                .expand-toggle
+                                                    transform: rotate(180deg)
+                                                    bottom: -1em
+                                        .main-speaker
+                                            display: flex
+                                            flex-direction: column
+                                            margin-bottom: 25px
+                                            .label
+                                                margin: 0
+                                                text-transform: none
+                                                color: $pink
+                                                text-decoration: none
+                                            .name
+                                                color: $pink
+                                                text-decoration: none
+                                                font-weight: 900
+                                                text-transform: uppercase
+                                        .additional-speakers
+                                            animation: fadeInUp .5s ease-in forwards
+                                            .label
+                                                font-weight: 700
+                                            .presenter-list
+                                                padding: 0
+                                                margin: 0
+                                                list-style: none
+                                                li
+                                                    .name
+                                                        text-decoration: none
+                                                        color: $blue
+                                                        &:active, &:focus, &:hover
+                                                            color: $pink
+                                .abstract-url
+                                    position: relative
+                                    display: flex
+                                    flex-direction: row
+                                    justify-content: center
+                                    align-items: center
+                                    max-width: max-content
+                                    margin-top: 25px
+                                    font-size: 1em
+                                    line-height: 1em
+                                    text-decoration: none
+                                    border: .5px solid $pink
+                                    padding: 10px 16px
+                                    color: $pink
+                                    font-weight: 500
+                                    transition: all .5s ease
+                                    &:hover
+                                        background: $pink
+                                        color: #fff
+                                        .button-icon
+                                            svg
+                                                path, polygon
+                                                    fill: #fff
+                                    .button-icon
+                                        margin-right: 8px
+                                        svg
+                                            width: 25px
+                                            height: 25px
+                                            path, polygon
+                                                fill: $pink
+                                                transition: all .5s ease
+                                .accordion-header
+                                    .icon
+                                        width: 25px
+                                        height: 25px
+                                        color: $pink
+                                    .MuiExpansionPanelSummary-content
+                                        flex-direction: column
+                                        .label
+                                            text-transform: uppercase
+                                            text-decoration: underline
+                                            font-weight: 500
+                                        .theme
+                                            padding: 0
+                                            margin-top: 10px
+                                            margin-bottom: 0
+                                        .short-intro
+                                            display: flex
+                                            flex-direction: row
+                                            visibility: visible
+                                            opacity: 1
+                                            transform: translateY(0)
+                                            transition: all .1s ease
+                                            &.hidden
+                                                visibility: hidden
+                                                opacity: 0
+                                                transform: translateY(20px)
+                                            .time
+                                                display: inline-block
+                                                width: 55px
+                                                font-weight: 500
+                                                @media all and (max-width: 767px)
+                                                    min-width: 100px
+                                            .intro
+                                                width: calc(100% - 55px)
+                                                display: -webkit-box
+                                                -webkit-line-clamp: 1
+                                                -webkit-box-orient: vertical  
+                                                overflow: hidden
+                                .accordion-body
+                                    flex-direction: column
+                                    .single-period
+                                        padding: 25px 0
+                                        &:first-of-type
+                                            padding-top: 0
+                                        &:last-of-type
+                                            padding-bottom: 0
+                                        .short-intro
+                                            margin-bottom: 10px
+                                            &:after
+                                                display: none
+
+#program-presentation
+    .full_abstract
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 100vh
+        padding: 10vh 0 15vh
+        box-sizing: border-box
+        background: #fff
+        z-index: 9999
+        transition: all .5s ease-in-out
+        display: flex!important
+        flex-direction: column
+        color: $blue
+        animation: fadeOutScale .3s ease forwards
+        &.active
+            animation: fadeInScale .3s ease forwards
+        .cta_wrapper
+            position: relative
+            width: 100%
+            max-width: 1110px
+            margin: 50px auto 0
+            padding: 0 35px
+            box-sizing: border-box
+            .close_full_abstract
+                color: $pink
+                font-weight: 700
+                text-transform: uppercase
+                text-decoration: underline
+                cursor: pointer
+        .abtract_wrapper
+            position: relative
+            margin: 0 auto
+            width: 100%
+            max-width: 1110px
+            overflow: auto
+            box-sizing: border-box
+            padding: 0 35px
+            display: flex
+            flex-direction: column
+            &::-webkit-scrollbar-track
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+                border-radius: 10px
+                background-color: #F5F5F5
+            &::-webkit-scrollbar
+                width: 5px
+                background-color: #F5F5F5
+            &::-webkit-scrollbar-thumb
+                border-radius: 10px
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3)
+                background-color: rgba(0,0,0,0.1)
+            .main_heading
+                color: $pink
+                text-align: left
+                margin: 0 0 25px
+                font-size: 3em
+                line-height: 1.2em
+                letter-spacing: 0.5px
+                @media all and (max-width: 767px)
+                    font-size: 2em
+            .date
+                margin: 0
+                font-size: 1.2em
+                color: $blue
+                line-height: 1
+            .theme
+                margin: 5px 0 0 0
+                font-size: 1.2em
+                color: $pink
+                font-weight: 700
+                margin-bottom: 35px
+            .short_intro
+                color: $blue
+                font-size: 1.1em
+            p
+                margin: 0
+            .label
+                margin: 20px 0 7px
+                color: $blue
+                font-weight: bold
+                text-align: left
+                padding: 0
+                font-size: 1em
+                line-height: 1
+                display: block
+            .main_speaker
+                color: $blue
+                text-decoration: none
+                line-height: 1
+                &:hover
+                    text-decoration: underline
+            .additional_speakers
+                display: block
+                width: 100%
+                float: left
+                a
+                    color: $blue
+                    line-height: 1
+                    margin: 0 0 7px
+                    text-decoration: none
+                    display: block
+                    float: left
+                    width: 100%
+                    &:hover
+                        text-decoration: underline
+                    &:last-of-type
+                        margin-bottom: 0
+            .abstract_content
+                strong, b
+                    font-weight: 700
+                    margin-top: 15px
+                    display: block
+                p
+                    margin-bottom: 15px
+                ul
+                    padding-left: 30px
+                    margin-bottom: 15px
+                    li
+                        margin-bottom: 10px
+
+@keyframes fadeIn
+    from
+        opacity: 0
+    to
+        opacity: 1
+
+@keyframes fadeInUp
+    from
+        opacity: 0
+        transform: translatey(10px)
+    to
+        opacity: 1
+        transform: translate(0px)
+
+@keyframes fadeInScale
+    from
+        opacity: 0
+        transform: translateY(10px)
+    to
+        opacity: 1
+        transform: translateY(0px)
+
+@keyframes fadeOutScale
+    from
+        opacity: 1
+        transform: translateY(0px)
+    to
+        opacity: 0
+        transform: translateY(50px)
